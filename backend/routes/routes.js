@@ -29,4 +29,17 @@ Router.delete("/:id", async (req,res) => {
         res.status(500).json({ message: "Error deleting job", error: e.message })
     }
 })
+
+Router.patch("/:id", async (req,res) => {
+    try{
+        const { company, position, status, salary, link, notes } = req.body
+        const updatedJob = await Job.findByIdAndUpdate(req.params.id, { company, position, status, salary, link, notes }, { new: true })
+        if(!updatedJob){
+            return res.status(404).json({ message: "Job not found" })
+        }
+        res.status(200).json({ message: "Job updated", updatedJob })
+    }catch(e){
+        res.status(500).json({ message: "Error updating job", error: e.message })
+    }
+})
 module.exports = Router;
