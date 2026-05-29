@@ -17,21 +17,18 @@ const jobSchema = new mongoose.Schema({
     },
     salary: {
         type: Number,
-        required: true
     },
     link: {
         type: String,
-        required: true
     },
     notes: {
         type: String,
         
     },
-    timestamp: {
-        timestamp: true
-    }
-
-
-})
+},
+{
+    timestamps: true,
+}
+)
 
 module.exports = mongoose.model("Job", jobSchema)
