@@ -2,7 +2,13 @@ const express = require("express")
 const Router = express.Router();
 const Job = require("../models/DevJob")
 
-Router.get("/", (req, res) => {
+Router.get("/", async (req, res) => {
+    try{
+        const jobs = await Job.find()
+        res.status(200).json({ message: "Jobs fetched", jobs })
+    }catch(e){
+        res.status(500).json({ message: "Error fetching jobs", error: e.message })
+    }
 res.send("jobs are working")
 
 })
