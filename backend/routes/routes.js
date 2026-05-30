@@ -9,8 +9,7 @@ Router.get("/", async (req, res) => {
     }catch(e){
         res.status(500).json({ message: "Error fetching jobs", error: e.message })
     }
-res.send("jobs are working")
-
+   
 })
 
 Router.post("/", async (req, res) => {
